@@ -23,6 +23,8 @@ public class Client implements Serializable {
 
     private Integer children;
 
+    public Client() {}
+
     public Client(Instant birhDate, String name, String cpf, Double income, Integer children) {
         this.birhDate = birhDate;
         this.name = name;
