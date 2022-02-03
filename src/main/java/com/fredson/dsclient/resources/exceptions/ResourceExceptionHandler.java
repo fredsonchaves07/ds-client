@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ResourceExceptionHandler {
 
     @ExceptionHandler(BadRequestErrorException.class)
-    public ResponseEntity<BadRequestErrorException> badRequest(BadRequestErrorException error) {
-        return ResponseEntity.status(error.getCodError()).body(error);
+    public ResponseEntity<StandardError> badRequest(BadRequestErrorException error) {
+        StandardError standardError = new StandardError(error.getCodError(), error.getMessage());
+        return ResponseEntity.status(error.getCodError()).body(standardError);
     }
 
     @ExceptionHandler(ServerErrorException.class)
-    public ResponseEntity<ServerErrorException> serverError(ServerErrorException error) {
-        return ResponseEntity.status(error.getCodError()).body(error);
+    public ResponseEntity<StandardError> serverError(ServerErrorException error) {
+        StandardError standardError = new StandardError(error.getCodError(), error.getMessage());
+        return ResponseEntity.status(error.getCodError()).body(standardError);
     }
 }
